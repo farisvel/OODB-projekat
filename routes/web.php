@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\WritersController;
+use App\Http\Controllers\GenresController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('articles',[ArticlesControl
 Route::middleware(['auth:sanctum', 'verified'])->get('writers',[WritersController::class, 'index']) ->name('writers');
 Route::middleware(['auth:sanctum', 'verified'])->get('add_writer',[WritersController::class, 'create'])->name('add_writer');
 Route::middleware(['auth:sanctum', 'verified'])->post('store_writer',[WritersController::class, 'store'])->name('store_writer');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('genres',[GenresController::class, 'index']) ->name('genres');
