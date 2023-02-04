@@ -28,7 +28,9 @@ class WritersController extends Controller
      */
     public function create()
     {
-        return view('writers.add');
+        $genres=DB::table('genres')->get();
+
+        return view('writers.add', ['genres'=>$genres]);
     }
 
     /**
