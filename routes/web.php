@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\WritersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +26,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', function (){
  })->name('articles'); */
 
 Route::middleware(['auth:sanctum', 'verified'])->get('articles',[ArticlesController::class, 'index']) ->name('articles');
+Route::middleware(['auth:sanctum', 'verified'])->get('writers',[WritersController::class, 'index']) ->name('writers');
