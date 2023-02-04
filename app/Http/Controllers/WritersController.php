@@ -28,7 +28,7 @@ class WritersController extends Controller
      */
     public function create()
     {
-        //
+        return view('writers.add');
     }
 
     /**
@@ -39,7 +39,18 @@ class WritersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        DB::table('writers')->insert ([
+            'name'=>$request->name,
+            'bio'=>$request->bio,
+            'genre'=>$request->genre,
+            'contact'=>$request->contact,
+        ]);
+
+        return redirect()->route('writers');
     }
 
     /**

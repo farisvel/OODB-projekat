@@ -27,3 +27,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', function (){
 
 Route::middleware(['auth:sanctum', 'verified'])->get('articles',[ArticlesController::class, 'index']) ->name('articles');
 Route::middleware(['auth:sanctum', 'verified'])->get('writers',[WritersController::class, 'index']) ->name('writers');
+Route::middleware(['auth:sanctum', 'verified'])->get('add_writer',[WritersController::class, 'create'])->name('add_writer');
+Route::middleware(['auth:sanctum', 'verified'])->post('store_writer',[WritersController::class, 'store'])->name('store_writer');
