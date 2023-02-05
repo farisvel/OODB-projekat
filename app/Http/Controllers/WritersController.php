@@ -98,6 +98,7 @@ class WritersController extends Controller
 
         $request->validate([
             'name'=>'required|string|max:255',
+            test test;
         ]);
 
         $update_query = DB::table('writers')
