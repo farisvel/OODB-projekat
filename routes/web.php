@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\WritersController;
 use App\Http\Controllers\GenresController;
+use App\Http\Controllers\ReadersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,4 @@ Route::middleware(['auth:sanctum', 'verified'])->post('edit_writer',[WritersCont
 Route::middleware(['auth:sanctum', 'verified'])->post('update_writer',[WritersController::class, 'update'])->name('update_writer');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('genres',[GenresController::class, 'index']) ->name('genres');
+Route::middleware(['auth:sanctum', 'verified'])->get('readers',[ReadersController::class, 'index']) ->name('readers');
