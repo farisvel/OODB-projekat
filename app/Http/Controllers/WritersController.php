@@ -98,7 +98,6 @@ class WritersController extends Controller
 
         $request->validate([
             'name'=>'required|string|max:255',
-            'engine'=>'required|integer',
         ]);
 
         $update_query = DB::table('writers')
@@ -110,7 +109,7 @@ class WritersController extends Controller
             'contact'=>$request->contact,
         ]);
 
-        return redirect()->route('cars');
+        return redirect()->route('genres');
     }
 
     /**
