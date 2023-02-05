@@ -72,9 +72,17 @@ class WritersController extends Controller
      * @param  \App\Models\Writers  $writers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Writers $writers)
+    public function edit(Request $request)
     {
-        //
+        $id=$request->id;
+
+        $writers=DB::table('writers')
+        ->where('id',$id)
+        ->get();
+
+        $genres=DB::table('genres')->get();
+
+        return view('writers.edit',['writers'=>$writers, 'genres'=>$genres]);
     }
 
     /**
@@ -84,9 +92,25 @@ class WritersController extends Controller
      * @param  \App\Models\Writers  $writers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Writers $writers)
+    public function update(Request $request)
     {
-        //
+        $id=$request->id;
+
+        $request->validate([
+            'name'=>'required|string|max:255',
+            'engine'=>'required|integer',
+        ]);
+
+        $update_query = DB::table('writers')
+        ->where('id',$id)
+        ->update([
+            'name'=>$request->name,
+            'bio'=>$request->bio,
+            'genre'=>$request->genre,
+            'contact'=>$request->contact,
+        ]);
+
+        return redirect()->route('cars');
     }
 
     /**
@@ -95,8 +119,10 @@ class WritersController extends Controller
      * @param  \App\Models\Writers  $writers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Writers $writers)
+    public function delete(Request $request)
     {
-        //
+        $id=$request->id;
+        Writers::destroy($id);
+        return redirect()->route('writers');
     }
 }
