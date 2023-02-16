@@ -11,7 +11,9 @@
                 <div>
                     <h1>Upit 1</h1>
                     <hr/>
-                    <p>1. Prvi upit</p>
+                    @foreach($pisci as $pisci)
+                    <p>{{$loop->iteration}}. {{$pisci->name}} - {{$pisci->brojac}}</p>
+                    @endforeach
                 </div>
                 <div>
                     <h1>Upit 2</h1>
