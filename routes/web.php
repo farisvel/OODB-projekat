@@ -6,6 +6,7 @@ use App\Http\Controllers\WritersController;
 use App\Http\Controllers\GenresController;
 use App\Http\Controllers\ReadersController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\QueryController;
 
 
 /*
@@ -41,3 +42,6 @@ Route::middleware(['auth:sanctum', 'verified'])->post('update_writer',[WritersCo
 Route::middleware(['auth:sanctum', 'verified'])->get('genres',[GenresController::class, 'index']) ->name('genres');
 Route::middleware(['auth:sanctum', 'verified'])->get('readers',[ReadersController::class, 'index']) ->name('readers');
 Route::middleware(['auth:sanctum', 'verified'])->get('subscriptions',[SubscriptionController::class, 'index']) ->name('subscriptions');
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('queries',[QueryController::class, 'index']) ->name('queries');
