@@ -15,6 +15,8 @@ class QueryController extends Controller
     public function index()
     {
         return view('queries.index');
+
+        test bezveze
     }
 
     /**
