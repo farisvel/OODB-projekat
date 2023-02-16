@@ -19,7 +19,8 @@ class QueryController extends Controller
         $pisci=DB::table('writers')
             ->select('writers.*', DB::raw('count(*) as brojac'))
             ->groupBy('writers.id')
-            ->join('genres', 'writers.id','=','genres.name')
+            ->where('writers.genre','=','2')   //gdje je zanr sa id=2;
+            //->join('genres', 'writers.id','=','genres.name')
             ->orderByRaw('COUNT(*) DESC')
             ->get();
 
