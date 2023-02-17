@@ -22,15 +22,26 @@
                     <p>{{$loop->iteration}}.  {{$clanci->name}}</p>
                     @endforeach
                 </div>
-                <div>
-                    <h1>Upit 3</h1>
+                <div align="center"><br>
+                    <h1>Citaoci koji imaju najvise pretplata</h1>
                     <hr/>
-                    <p>1. Prvi upit</p>
+                    @foreach($csnp as $csnp)
+                    <p>{{$loop->iteration}}.  {{$csnp->reader_id}}</p>
+                    @endforeach
                 </div>
-                <div>
-                    <h1>Upit 4</h1>
+                <div align="center"><br>
+                    <h1>Pretplate za odredjeni zanr u nekom periodu</h1>
                     <hr/>
-                    <p>1. Prvi upit</p>
+                    @foreach($pretplate as $pretplate)
+                    <p>{{$loop->iteration}}.  {{$pretplate->datum}}</p>
+                    @endforeach
+                </div>
+                <div align="center"><br>
+                    <h1>Pretplate za odredjeni zanr u nekom periodu nekog citaoca</h1>
+                    <hr/>
+                    @foreach($citaoci as $citaoci)
+                    <p>{{$loop->iteration}}.  {{$citaoci->reader_id}}</p>
+                    @endforeach
                 </div>
             </div>
         </div>

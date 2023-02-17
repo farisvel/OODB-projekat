@@ -32,11 +32,42 @@ class QueryController extends Controller
             ->whereBetween('date',[$from,$to])
             ->where('articles.genre', '=', '3')
             ->get();
+
+        //upit3: citaoci sa najvise pretplata
+        $csnp=DB::table('subscriptions')
+            ->select('subscriptions.*', DB::raw('count(*) as brojac'))
+            ->groupBy('subscriptions.reader_id')
+            ->join('readers', 'subscriptions.reader_id','=','readers.id')
+            ->orderByRaw('COUNT(*) DESC')
+            ->get();    
+
+        //upit4: pretplate za odredjeni zanr u nekom periodu
+        $from='2023-01-01 00:00:00';
+        $to='2024-02-01 23:59:59';
+
+        $pretplate=DB::table('subscriptions')
+            ->whereBetween('datum',[$from,$to])
+            ->where('subscriptions.genre_id','=','1')
+            ->join('genres','subscriptions.genre_id','=','genres.id')
+            ->get();
+
+        //upit5: citaoci koji su se pretplatili na neki zanr u nekom periodu
+        $from='2023-01-01 00:00:00';
+        $to='2024-02-01 23:59:59';
+
+        $citaoci=DB::table('subscriptions')
+            ->whereBetween('datum',[$from,$to])
+            ->where('subscriptions.genre_id','=','2')
+            ->join('readers','subscriptions.reader_id','=','readers.id')
+            ->get();
         
 
         return view('queries.index',
             ['pisci'=>$pisci,
-            'clanci'=>$clanci
+            'clanci'=>$clanci,
+            'csnp'=>$csnp,
+            'pretplate'=>$pretplate,
+            'citaoci'=>$citaoci
         ]);
 
 
