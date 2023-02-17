@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Query;
+use DB;
 use Illuminate\Http\Request;
 
 class QueryController extends Controller
@@ -14,7 +15,20 @@ class QueryController extends Controller
      */
     public function index()
     {
-        return view('queries.index');
+        //pisci koji pisu odredjeni zanr
+        $pisci=DB::table('writers')
+            ->select('writers.*', DB::raw('count(*) as brojac'))
+            ->groupBy('writers.id')
+            ->where('writers.genre','=','2')   //gdje je zanr sa id=2;
+            //->join('genres', 'writers.id','=','genres.name')
+            ->orderByRaw('COUNT(*) DESC')
+            ->get();
+
+
+        return view('queries.index',
+            ['pisci'=>$pisci,
+        ]);
+
 
     }
 
