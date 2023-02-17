@@ -24,11 +24,19 @@ class QueryController extends Controller
             ->orderByRaw('COUNT(*) DESC')
             ->get();
 
-        /
+        //clanci u odredjeom periodu odredjenog zanra
+        $from='2023-01-01 00:00:00';
+        $to='2024-02-01 23:59:59';
 
+        $clanci=DB::table('articles')
+            ->whereBetween('date',[$from,$to])
+            ->where('articles.genre', '=', '3')
+            ->get();
+        
 
         return view('queries.index',
             ['pisci'=>$pisci,
+            'clanci'=>$clanci
         ]);
 
 
