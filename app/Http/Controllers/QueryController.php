@@ -24,6 +24,8 @@ class QueryController extends Controller
             ->orderByRaw('COUNT(*) DESC')
             ->get();
 
+        /
+
 
         return view('queries.index',
             ['pisci'=>$pisci,
