@@ -20,10 +20,25 @@ use App\Http\Controllers\QueryController;
 |
 */
 
+// Route::get('/', function() {
+//     $response = Http::get("https://api.openweathermap.org/data/2.5/weather?q=Bihac&appid=761093e808bec5ef5deacb0810aecb70&units=metric");
+
+//     dump($response->json());
+//     return view('components.weather-widget', [
+//         'currentWeather'=>$response->json(),
+//     ]);
+// });
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function (){
-    return view('dashboard');
+
+    $response = Http::get("https://api.openweathermap.org/data/2.5/weather?q=Bihac&appid=761093e808bec5ef5deacb0810aecb70&units=metric");
+
+   // dump($response->json());
+
+    return view('dashboard', [
+        'currentWeather'=>$response->json(),
+    ]);
 })->name('dashboard');
 
 /* Route::middleware(['auth:sanctum', 'verified'])->get('/articles', function (){
@@ -46,21 +61,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('subscriptions',[Subscripti
 
 Route::middleware(['auth:sanctum', 'verified'])->get('queries',[QueryController::class, 'index']) ->name('queries');
 
-// Route::get('/', function() {
 
-//     $response = Http::get("https://api.openweathermap.org/data/2.5/weather?q=Bihac&appid=761093e808bec5ef5deacb0810aecb70&units=metric");
-
-//     return view('welcome', [
-//         'currentWeather' => $response->json(),
-//     ]
-// );
-// });
-
-Route::get('/', function() {
-    $response = Http::get("https://api.openweathermap.org/data/2.5/weather?q=Bihac&appid=761093e808bec5ef5deacb0810aecb70&units=metric");
-
-    dump($response->json());
-    return view('components.weather-widget', [
-        'currentWeather'=>$response->json(),
-    ]);
-});

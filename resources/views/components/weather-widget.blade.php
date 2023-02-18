@@ -6,8 +6,8 @@
                                 </div>
 
                                 <div>
-                                    <div class="text-15xl font-semibold">Temperatura: {{round($currentWeather['main']['temp'])}}&#176;C</div>
-                                    <div class="text-gray-400">Osjećaj kao: 5&#176;C</div>
+                                    <div class="text-15xl font-semibold">Temperatura: {{round($currentWeather['main']['temp']) }}&#176;C</div>
+                                    <div class="text-gray-400">Osjećaj kao: {{round($currentWeather['main']['feels_like']) }}&#176;C</div>
                                 </div>
                                  
                                 
