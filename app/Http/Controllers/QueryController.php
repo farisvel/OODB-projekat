@@ -42,7 +42,7 @@ class QueryController extends Controller
             ->get();    
 
         //upit4: pretplate za odredjeni zanr u nekom periodu
-        $from='2023-01-01 00:00:00';
+        $from='2000-01-01 00:00:00';
         $to='2024-02-01 23:59:59';
 
         $pretplate=DB::table('subscriptions')
@@ -52,13 +52,13 @@ class QueryController extends Controller
             ->get();
 
         //upit5: citaoci koji su se pretplatili na neki zanr u nekom periodu
-        $from='2023-01-01 00:00:00';
+        $from='2010-01-01 00:00:00';
         $to='2024-02-01 23:59:59';
 
         $citaoci=DB::table('subscriptions')
             ->whereBetween('datum',[$from,$to])
-            ->where('subscriptions.genre_id','=','2')
-            ->join('readers','subscriptions.reader_id','=','readers.id')
+            ->where('subscriptions.genre_id','=','4')
+           // ->join('readers','subscriptions.reader_id','=','readers.id')
             ->get();
         
 
